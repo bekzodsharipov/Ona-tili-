@@ -1,1 +1,147 @@
-document.addEventListener("DOMContentLoaded",(function(){function e(e){var t=new XMLHttpRequest;t.open("POST","https://user-action-tracker.asosit.uz/events",!0),t.setRequestHeader("Content-Type","application/json"),t.onreadystatechange=function(){4===t.readyState&&(200===t.status?console.log("Yuborildi:",t.responseText):console.error("Xatolik:",t.status))},t.send(JSON.stringify({type:e,site_name:"Asosiy"}))}e("Saytga kirdi");var t=document.querySelectorAll(".registerBtn"),n=document.getElementById("registrationModal"),o=document.getElementById("closeModalBtn"),r=document.querySelector(".homeModalOverlay"),a=document.getElementById("registrationForm"),l=document.getElementById("phone"),i=document.getElementById("phoneError"),d=document.getElementById("submitBtn"),s=(document.getElementById("selectedCountry"),document.getElementById("selectedCountryCode"),document.getElementById("countryDropdown"),document.getElementById("dropdownIcon"),{"+998":{placeholder:"88 888 88 88",format:function(e){var t="";return e.length>0&&(t+=e.slice(0,2)),e.length>2&&(t+=" "+e.slice(2,5)),e.length>5&&(t+=" "+e.slice(5,7)),e.length>7&&(t+=" "+e.slice(7,9)),t},validate:function(e){return/^\d{2} \d{3} \d{2} \d{2}$/.test(e)}}}),c="+998";function u(){n.style.display="none",document.body.style.overflowY="scroll"}o.addEventListener("click",u),r.addEventListener("click",u);for(var m=0;m<t.length;m++)t[m].addEventListener("click",(function(){e("Tugmani bosdi"),n.style.display="block",document.body.style.overflowY="hidden"}));a.addEventListener("submit",(function(e){e.preventDefault();var t=l.value;if((s[c]||s["+998"]).validate(t)){i.style.display="none",d.textContent="YUBORILMOQDA...",d.disabled=!0;var n=new Date,o={TelefonRaqam:c+" "+t,SanaSoat:n.toLocaleDateString("uz-UZ")+" - "+n.toLocaleTimeString("uz-UZ")};localStorage.setItem("formData",JSON.stringify(o)),window.location.href="/thankYou.html"}else i.style.display="block"})),l.addEventListener("input",(function(){var e=this.value.replace(/\D/g,""),t=s[c]||s["+998"];this.value=t.format(e),i.style.display="none"}));var g=120,y=document.getElementById("timer"),v=setInterval((function(){if(g<=0)return clearInterval(v),void(y.textContent="00:00");g--;var e=Math.floor(g/60),t=g%60,n=e.toString().padStart(2,"0"),o=t.toString().padStart(2,"0");y.textContent=n+":"+o}),1e3)}));const img=document.querySelector(".mobile-hero-image"),bigSrc=img.getAttribute("data-src"),highRes=new Image;highRes.src=bigSrc,highRes.onload=()=>{img.src=bigSrc,img.classList.remove("blur-up")};
+document.addEventListener("DOMContentLoaded", function () {
+
+    function sendEvent(eventType) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://user-action-tracker.asosit.uz/events", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    console.log("Yuborildi:", xhr.responseText);
+                } else {
+                    console.error("Xatolik:", xhr.status);
+                }
+            }
+        };
+
+        xhr.send(JSON.stringify({
+            type: eventType,
+            site_name: "Asosiy"
+        }));
+    }
+
+    sendEvent("Saytga kirdi");
+
+    var registerButtons = document.querySelectorAll(".registerBtn");
+    var registrationModal = document.getElementById("registrationModal");
+    var closeModalBtn = document.getElementById("closeModalBtn");
+    var modalOverlay = document.querySelector(".homeModalOverlay");
+    var registrationForm = document.getElementById("registrationForm");
+    var phoneInput = document.getElementById("phone");
+    var phoneError = document.getElementById("phoneError");
+    var submitBtn = document.getElementById("submitBtn");
+    var timerElement = document.getElementById("timer");
+
+    var phoneFormats = {
+        "+998": {
+            placeholder: "88 888 88 88",
+            format: function (num) {
+                var formatted = "";
+                if (num.length > 0) formatted += num.slice(0, 2);
+                if (num.length > 2) formatted += " " + num.slice(2, 5);
+                if (num.length > 5) formatted += " " + num.slice(5, 7);
+                if (num.length > 7) formatted += " " + num.slice(7, 9);
+                return formatted;
+            },
+            validate: function (val) {
+                return /^\d{2} \d{3} \d{2} \d{2}$/.test(val);
+            }
+        }
+    };
+
+    var currentCountryCode = "+998";
+
+    function closeModal() {
+        registrationModal.style.display = "none";
+        document.body.style.overflowY = "scroll";
+    }
+
+    closeModalBtn.addEventListener("click", closeModal);
+    modalOverlay.addEventListener("click", closeModal);
+
+    registerButtons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+            sendEvent("Tugmani bosdi");
+            registrationModal.style.display = "block";
+            document.body.style.overflowY = "hidden";
+        });
+    });
+
+    registrationForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var phone = phoneInput.value;
+        var country = phoneFormats[currentCountryCode] || phoneFormats["+998"];
+
+        if (country.validate(phone)) {
+            phoneError.style.display = "none";
+            submitBtn.textContent = "YUBORILMOQDA...";
+            submitBtn.disabled = true;
+
+            var now = new Date();
+            var formData = {
+                TelefonRaqam: currentCountryCode + " " + phone,
+                SanaSoat: now.toLocaleDateString("uz-UZ") + " - " + now.toLocaleTimeString("uz-UZ")
+            };
+
+            localStorage.setItem("formData", JSON.stringify(formData));
+            window.location.href = "/thankYou.html";
+        } else {
+            phoneError.style.display = "block";
+        }
+    });
+
+    phoneInput.addEventListener("input", function () {
+        var digits = this.value.replace(/\D/g, "");
+        var format = phoneFormats[currentCountryCode] || phoneFormats["+998"];
+        this.value = format.format(digits);
+        phoneError.style.display = "none";
+    });
+
+    var timeLeft = 120;
+    var timer = setInterval(function () {
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            timerElement.textContent = "00:00";
+            return;
+        }
+
+        timeLeft--;
+        var minutes = Math.floor(timeLeft / 60);
+        var seconds = timeLeft % 60;
+        timerElement.textContent =
+            minutes.toString().padStart(2, "0") + ":" +
+            seconds.toString().padStart(2, "0");
+    }, 1000);
+
+});
+
+let duration = 2 * 60;
+const timerBox = document.querySelector('.timer__box');
+
+const interval = setInterval(() => {
+    let minutes = Math.floor(duration / 60);
+    let seconds = duration % 60;
+
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+
+    timerBox.textContent = `${minutes}:${seconds}`;
+
+    if (duration <= 0) {
+        clearInterval(interval);
+        timerBox.textContent = "00:00";
+    }
+
+    duration--;
+}, 1000);
+
+const img = document.querySelector(".mobile-hero-image");
+const bigSrc = img.getAttribute("data-src");
+const highRes = new Image();
+highRes.src = bigSrc;
+
+highRes.onload = () => {
+    img.src = bigSrc;
+    img.classList.remove("blur-up");
+};
