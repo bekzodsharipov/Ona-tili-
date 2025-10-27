@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ona tili</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: sans-serif;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    .mobile-event-header {
+      padding: 0 10px;
+    }
+
+    .mobile-event-container {
+      max-width: 254px;
+      width: 100%;
+      gap: 7px;
+      padding-top: 30px;
+      display: flex;
+      align-items: center;
+      margin: 0 auto 18px;
+      justify-content: center;
+    }
+
+    .mobile-event-info {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      border-radius: 28px;
+      border: 1px solid #C34A01;
+      padding: 8px 12px;
+
+    }
+
+    .mobile-event-date {
+      font-family: Gogh, sans-serif;
+      line-height: 20px;
+      font-weight: 400;
+      font-size: 18px;
+    }
+
+    .mobile-event-time {
+      font-family: Poppins, sans-serif;
+      line-height: 30px;
+      font-weight: 700;
+      font-style: Bold;
+      font-size: 18px;
+      color: black;
+    }
+
+    .mobile-main-content {
+      text-align: center;
+    }
+
+    .mobile-content-wrapper {
+      width: 100%;
+      padding: 0 10px;
+    }
+
+    .mobile-main-title {
+      font-family: "Degular Display", sans-serif;
+      font-weight: 700;
+      line-height: 110%;
+      font-size: 36px;
+      max-width: 480px;
+      margin: 0 auto 6px;
+
+      span {
+        color: #FF6000;
+      }
+    }
+
+    .mobile-main-text {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 100%;
+      text-align: center;
+      margin-bottom: 8px;
+
+      span {
+        color: #2E9455;
+      }
+    }
+
+    .mobile-content-img {
+      min-height: 362px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      max-width: 310px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .mobile-hero-image {
+      display: inline-flex;
+      max-width: 368px;
+      object-fit: contain;
+      height: auto;
+      width: 100%;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      margin-bottom: -35px;
+    }
+
+    .mobile-cta-button {
+      font-family: Poppins, sans-serif;
+      min-height: 61px;
+      padding: 18px 27px;
+      background: linear-gradient(90deg, #FF3F00 0%, #FF8B23 100%);
+      box-shadow: 0px 5px 0px 0px #CA4C00;
+      font-size: 24px;
+      line-height: 100%;
+      font-weight: 700;
+      text-transform: uppercase;
+      border: none;
+      max-width: 409px;
+      color: white;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 50px;
+      margin-bottom: 15px;
+      cursor: pointer;
+      z-index: 2;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 21px;
+      justify-content: center;
+
+      img {
+        margin-right: -25px;
+      }
+    }
+
+    .mobile-bonus-section {
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 14px;
+      background-color: #fff;
+      border: 1px solid #BCBCBC;
+      border-radius: 10px;
+      margin-bottom: 18px;
+    }
+
+    .mobile-bonus-text {
+      color: black;
+      font-size: 11px;
+      line-height: 180%;
+    }
+
+    .mobile-bonus-text .highlight {
+      font-weight: 500;
+    }
+
+    .mobile-masterclass-title {
+      color: black;
+      font-weight: 600;
+      font-size: 17px;
+      line-height: 100%;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .mobile-benefits-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-bottom: 20px;
+      max-width: 299px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .mobile-benefit-item {
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      span {
+        color: #2E9455;
+      }
+
+      svg {
+        flex-shrink: 0;
+      }
+    }
+
+    .giftImgBtn {
+      position: absolute;
+      top: -50%;
+      transform: translateY(35%);
+      right: 0;
+    }
+
+    .gift__box {
+      position: relative;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 9px 15px;
+      border: 1px solid #565656;
+      border-radius: 5px;
+      margin-top: 15px;
+      max-width: 330px;
+    }
+
+    .gift__text {
+      font-size: 12px;
+      font-weight: 400;
+      text-align: left;
+    }
+
+    .mobile-benefit-text {
+      color: black;
+      font-size: 14px;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+
+    .mobile-main-content {
+      padding-bottom: 15px;
+    }
+
+    .mobile-hero-shadow {
+      position: absolute;
+      width: 176px;
+      height: 180px;
+      transform: translate(-50%, -50%);
+      left: 49%;
+      top: 38%;
+      background: #795B43;
+      filter: blur(100px);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .mobile-text {
+      font-size: 14px;
+      line-height: 23px;
+      font-weight: 400;
+      font-family: Poppins, sans-serif;
+      color: black;
+      text-align: center;
+    }
+
+
+
+    .blur-up {
+      filter: blur(10px);
+      transition: filter 0.4s ease-out;
+    }
+
+    .hero__right_info__box {
+      max-width: 313px;
+      padding: 10px 31px 13px 13px;
+      padding-left: 30px;
+      padding-right: 31px;
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      margin-top: -110px;
+      border-radius: 24px;
+      margin-bottom: 9px;
+      color: white;
+      background-color: rgba(0, 0, 0, .1);
+      backdrop-filter: blur(12px);
+      border: 3px solid rgba(0, 0, 0, .1);
+      bottom: 1px;
+    }
+
+    .hero__right_list {
+      text-align: start;
+    }
+
+    .hero__right_infobox-title {
+      font-size: 18px;
+      line-height: 20px;
+      margin-bottom: 6.5px;
+    }
+
+    .hero__registerBtn {
+      padding: 23px 20px;
+      border-radius: 15px;
+      margin-bottom: 12px;
+      font-size: 18px;
+      max-width: 307px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .mobile-content-box {
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    body {
+      font-family: Poppins, sans-serif;
+    }
+
+    .timer__box {
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
+      line-height: 120%;
+      font-weight: 400;
+      font-family: "Bebas Neue", sans-serif;
+    }
+
+
+    .desc__btn {
+      width: 100%;
+    }
+
+    .mobile-content-info {
+      font-family: Inter, sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 20px;
+      text-align: center;
+      color: white;
+      padding: 11px 28px 16px 33px;
+      border-radius: 20px;
+      border: 3px solid #D3D1D8;
+      position: absolute;
+      z-index: 17;
+      bottom: 10px;
+      backdrop-filter: blur(30px);
+    }
+
+    .gliter__bg {
+      position: absolute;
+      top: -50px;
+      left: -20px;
+      z-index: 30;
+      display: block;
+    }
+
+    .bonus_sec-title {
+      margin-bottom: 5px;
+    }
+
+
+
+    .hero {
+      padding-bottom: 0;
+    }
+
+    .desc__btn {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero__registerBtn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 430px;
+      width: 100%;
+      background-color: #9b1121;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 23.25px;
+      color: #fff;
+      text-align: center;
+      padding: 37px 20px;
+      margin-bottom: 12px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .description {
+      padding-bottom: 30px;
+    }
+
+    .description__container {
+      max-width: 490px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .description__title {
+      font-family: "Bebas Neue", sans-serif;
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 100%;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .description__row {
+      max-width: 394px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      gap: 10px;
+    }
+
+    .description__col {
+      border-radius: 20px;
+      border: 1px solid #C34A01;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: Poppins, sans-serif;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 22px;
+    }
+
+    .description__col>img {
+      background-color: #FEA672;
+      opacity: 1;
+      padding: 15px 30px 15px 30px;
+      border-top-left-radius: 19px;
+      border-bottom-right-radius: 20px;
+      border-bottom-left-radius: 19px;
+      width: 120px;
+      height: 91px;
+    }
+
+    .thought__box {
+      text-align: center;
+      overflow: hidden;
+      width: 100%;
+      max-width: 390px;
+      margin: 50px auto;
+    }
+
+    .thought__title {
+      font-size: 27px;
+      line-height: 125%;
+      font-weight: 800;
+      font-family: Anton, sans-serif;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .thought__info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      animation: slide 15s linear infinite;
+    }
+
+    .thought__info img {
+      border-radius: 20px;
+      flex-shrink: 0;
+    }
+
+    .mobile__arrow-box {
+      display: flex;
+      align-items: center;
+      position: relative;
+      margin-top: -25px;
+    }
+
+    .mobile__arrow-svg {
+      margin-left: -33px;
+      margin-top: -12px;
+    }
+
+    .mobile-arrow-text {
+      max-width: 190px;
+      width: 100%;
+      font-family: Poppins, sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 18px;
+      color: #444444;
+    }
+
+    @keyframes slide {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-90%);
+      }
+    }
+
+    /* Smooth infinite effect: clone images */
+    .thought__info::after {
+      content: "";
+    }
+
+    /* === Responsive === */
+    @media (max-width: 768px) {
+      .bonus_sec-title {
+        font-size: 14px;
+        margin-bottom: 1px;
+      }
+
+      .thought__title {
+        font-size: 22px;
+      }
+
+    }
+
+    .hero__registerBtn {
+      padding: 18px 15px;
+      font-size: 17px;
+      border-radius: 15px;
+      max-width: 307px;
+    }
+
+    label {
+      display: block;
+      font-size: 16px;
+      color: #000;
+      margin-bottom: 10px;
+      margin-top: 30px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 15px 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      color: #000;
+    }
+
+    .error-message {
+      color: #cb0000;
+      font-size: 14px;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .mobile-gift {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 395px;
+      border: 2px solid #F87500;
+      opacity: 1;
+      padding: 3px 10px 5px 0;
+      border-top-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      border-bottom-left-radius: 20px;
+    }
+
+    .mobile-gift-title {
+      text-align: start;
+      margin-bottom: 4px;
+      font-weight: 700;
+      font-size: 17px;
+      margin-left: 10px;
+      white-space: nowrap;
+      line-height: 22px;
+    }
+
+
+
+    .mobile-gift-nav>li {
+      text-align: start;
+      margin-left: 20px;
+      font-family: Poppins, sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 22px;
+    }
+
+
+
+    @media (max-width: 500px) {
+      .mobile-gift-title {
+        font-size: 15px;
+        margin-bottom: 3px;
+      }
+
+      .mobile-gift-nav>li {
+        text-align: start;
+        margin-left: 20px;
+        font-family: Poppins, sans-serif;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 18px;
+      }
+
+      .mobile-gift>img {
+        width: 100px;
+      }
+
+
+      .mobile-content-info {
+        font-size: 15px;
+        left: 25px;
+      }
+
+      .mobile-hero-image {
+        max-width: 253px;
+        width: 100%;
+        margin-top: 5px;
+      }
+
+      .mobile-cta-button {
+        font-size: 22px;
+        padding: 10px;
+        line-height: 100%;
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .mobile-text {
+        font-size: 10.4px;
+      }
+
+      .mobile-main-title {
+        font-size: 32px;
+        line-height: 100%;
+      }
+
+      .description__col {
+        font-size: 16px;
+      }
+
+      .description__col>img {
+        width: 90px;
+        height: 70px;
+        padding: 10px 20px;
+      }
+    }
+
+
+
+    @media (min-width: 570px) {
+      .mobile-cta-button {
+        width: 100%;
+        margin: 0 auto 11px;
+      }
+
+      .mobile-bonus-section {
+        max-width: 400px;
+        width: 100%;
+        margin: 0 auto 18px;
+      }
+
+      .mobile-masterclass-info {
+        max-width: 400px;
+        width: 100%;
+        margin: 0 auto;
+      }
+    }
+
+    @media(max-width:351px) {
+      .description__col {
+        font-size: 14px;
+      }
+
+      .description__col>br {
+        display: none;
+      }
+
+      .description__col>img {
+        width: 85px;
+        height: 65px;
+        padding: 10px 20px;
+      }
+
+      .mobile-event-date {
+        font-size: 15px;
+      }
+
+      .mobile-gift>img {
+        width: 80px;
+      }
+
+      .mobile-gift-title {
+        font-size: 15px;
+        white-space: wrap;
+        line-height: 100%;
+      }
+
+      .mobile-gift-nav>li {
+        font-size: 10px;
+      }
+
+      .mobile-event-time {
+        font-size: 20px;
+      }
+
+      .mobile-benefits-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .mobile-bonus-text {
+        font-size: 10px;
+      }
+
+      .mobile-content-info {
+        font-size: 14px;
+        padding: 10px 25px 14px 28px;
+        left: 35px;
+      }
+
+      .mobile-event-container {
+        margin-bottom: 10px;
+        gap: 5px;
+      }
+
+      .mobile-main-title {
+        font-size: 26px;
+        width: 100%;
+      }
+
+      .mobile-main-title {
+        font-size: 23px;
+      }
+
+      .mobile-cta-button {
+        font-size: 20px;
+        padding: 10px 20px 10px 10px;
+        line-height: 100%;
+
+        img {
+          width: 45px;
+          height: 45px;
+        }
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="./css/modal.css" media="print" onload="this.media='all'" />
+  <noscript>
+    <link rel="stylesheet" href="./css/modal.css" />
+  </noscript>
+  <link rel="preload" as="image" href="/img/speaker.avif" type="image/avif">
+</head>
+
+<body>
+  <div class="mobile-event-header">
+    <div class="mobile-event-container">
+      <div class="mobile-event-info">
+        <img src="./img/calendar.svg" style="margin-top: -2px;" alt="calendar icons" width="19" height="21"
+          loading="lazy" decoding="async">
+        <p class="mobile-event-date">3-4-Noyabr</p>
+      </div>
+      <div class="mobile-event-info">
+        <img src="./img/clock.svg" alt="clock icons" width="19" height="20" loading="lazy" decoding="async">
+        <p class="mobile-event-date">21:00</p>
+      </div>
+    </div>
+  </div>
+  <section class="mobile-main-content">
+    <div class="mobile-content-wrapper">
+      <h1 class="mobile-main-title">Qanday qilib, ona tilidan 3 oyda <br> <span>0 dan A va A+ milliy sertifikatiga</span>
+        erishish mumkin?
+      </h1>
+
+
+      <div class="mobile-content-img">
+        <img src="./img/speaker.avif" alt="Speaker" decoding="async" loading="lazy" class="mobile-hero-image"
+          width="272" height="392">
+        <div class="mobile-content-info">
+          <h3>Muhammad Haydarov</h3>
+        </div>
+      </div>
+
+      <div class="mobile-content-box">
+        <button class="mobile-cta-button registerBtn">
+          ro’yxatdan o’tish
+          <img src="./img/arrow-right.svg" loading="lazy" decoding="async " alt="arrow-right">
+        </button>
+      </div>
+
+      <div class="mobile-gift">
+        <img src="./img/gift.avif" loading="lazy" decoding="async" alt="gift icons">
+        <div class="">
+          <h3 class="mobile-gift-title">Qatnashuvchilar uchun sovg’alar:</h3>
+          <ul class="mobile-gift-nav">
+            <li>70+ ball esselar toʻplami</li>
+            <li>1500 ta test va uning tahlili</li>
+            <li>Imtihonda hayajonni yengish treningi</li>
+            <li>10 ta diagnostik test va uning tahlili</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="description">
+    <div class="description__container">
+      <h3 class="description__title">Vebinarda siz:</h3>
+      <ul class="description__row">
+        <li class="description__col">
+          <img src="./img/decision.svg" alt="decision icons">
+          G’azal tahlili testlari
+        </li>
+        <li class="description__col">
+          <img src="./img/branding.svg" alt="decision icons">
+          Qisqa vaqtda A+ sertifikatni <br> olish strategiyasi
+        </li>
+        <li class="description__col">
+          <img src="./img/target.svg" alt="decision icons">
+          Eng qiyin savollarni oson bajarish usullarini o’rganasiz
+        </li>
+      </ul>
+    </div>
+  </section>
+
+
+
+  <!-- Modal -->
+  <div id="registrationModal" class="homeModal" style="display: none">
+    <div class="homeModalOverlay"></div>
+    <div class="homeFormContainer">
+      <button class="closeButton" id="closeModalBtn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 12 12" fill="none">
+          <path d="M1 11L11 1M1 1.00001L11 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+        </svg>
+      </button>
+      <div class="homeFormTop">
+        <h1 class="homeFormTopTitle">
+          MASTERKLASSGA <br />
+          RO'YXATDAN O'TISH
+        </h1>
+      </div>
+      <form id="registrationForm" name="contact-form">
+        <div class="HomeFormRow">
+          <label class="HomeFormRowLabel" for="phone">Telefon raqamingiz:</label>
+          <div class="phone-input-container">
+            <div class="country-selector">
+              <div class="selected-country" id="selectedCountry">
+                <span id="selectedCountryCode">+998</span>
+                <svg id="dropdownIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </div>
+              <div class="country-dropdown" id="countryDropdown" style="display: none"></div>
+            </div>
+            <input class="HomeFormRowInput" type="tel" id="phone" name="phone" placeholder="88 888 88 88"
+              autocomplete="tel" />
+          </div>
+          <p class="homeFormErrorText" id="phoneError" style="display: none">
+            ❌ Telefon raqam mos emas!
+          </p>
+        </div>
+        <button type="submit" class="HomeFormBtn" id="submitBtn">
+          ro’yxatdan o’tish </button>
+      </form>
+    </div>
+  </div>
+
+
+
+  <script defer src="./js/app.js"></script>
+</body>
+
+</html>

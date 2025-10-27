@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="19"
+   height="20"
+   viewBox="0 0 19 20"
+   fill="none"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="Clock.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <path
+     d="M8.67187 5.50515V9.67182H12.8385M8.67187 17.1718C4.52974 17.1718 1.17188 13.814 1.17188 9.67182C1.17188 5.52969 4.52974 2.17182 8.67187 2.17182C12.814 2.17182 16.1719 5.52969 16.1719 9.67182C16.1719 13.814 12.814 17.1718 8.67187 17.1718Z"
+     stroke="black"
+     stroke-width="2"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     id="path1" />
+</svg>
